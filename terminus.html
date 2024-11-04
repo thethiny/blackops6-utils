@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Calculator</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #283c86, #45a247);
+      color: #fff;
+    }
+    .container {
+      text-align: center;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      width: 300px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+    label, h2 {
+      font-size: 18px;
+    }
+    input {
+      width: 80%;
+      padding: 8px;
+      margin: 5px 0;
+      font-size: 16px;
+      text-align: center;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+    input:focus {
+      outline: none;
+      border-color: #45a247;
+    }
+    .result, .error {
+      font-size: 16px;
+      margin-top: 10px;
+      padding: 8px;
+      border-radius: 5px;
+    }
+    .result {
+      background: rgba(0, 0, 0, 0.2);
+    }
+    .error {
+      background: rgba(255, 0, 0, 0.3);
+      color: #fff;
+    }
+  </style>
+  <script>
+    function validateAndCalculate() {
+      const x = document.getElementById("x").value;
+      const y = document.getElementById("y").value;
+      const z = document.getElementById("z").value;
+      const errorDiv = document.getElementById("error");
+      errorDiv.textContent = "";
+
+      const regex = /^[0-2]?[0-2]$/;
+      if (![x, y, z].every(num => regex.test(num))) {
+        errorDiv.textContent = "Each number must be a 2-digit integer starting with 0, 1, or 2.";
+        clearResults();
+        return;
+      }
+
+      if (x === y || y === z || x === z) {
+        errorDiv.textContent = "Values of x, y, and z must be different.";
+        clearResults();
+        return;
+      }
+
+      const val1 = 2 * parseInt(x) + 11;
+      const val2 = 2 * parseInt(z) + parseInt(y) - 5;
+      const val3 = Math.abs(parseInt(y) + parseInt(z) - parseInt(x));
+
+      document.getElementById("result1").textContent = `2x + 11 = ${val1}`;
+      document.getElementById("result2").textContent = `2z + y - 5 = ${val2}`;
+      document.getElementById("result3").textContent = `|y + z - x| = ${val3}`;
+    }
+
+    function clearResults() {
+      document.getElementById("result1").textContent = "2x + 11 = ";
+      document.getElementById("result2").textContent = "2z + y - 5 = ";
+      document.getElementById("result3").textContent = "|y + z - x| = ";
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h2>Enter Values for x, y, z</h2>
+    <label>x: <input type="text" id="x" maxlength="2" oninput="validateAndCalculate()"></label><br>
+    <label>y: <input type="text" id="y" maxlength="2" oninput="validateAndCalculate()"></label><br>
+    <label>z: <input type="text" id="z" maxlength="2" oninput="validateAndCalculate()"></label><br>
+
+    <div id="error" class="error"></div>
+
+    <div class="result" id="result1">2x + 11 = </div>
+    <div class="result" id="result2">2z + y - 5 = </div>
+    <div class="result" id="result3">|y + z - x| = </div>
+  </div>
+</body>
+</html>
