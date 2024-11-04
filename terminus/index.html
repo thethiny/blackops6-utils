@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Interactive Calculator</title>
+  <title>Terminus Code Calculator</title>
   <style>
     * {
       box-sizing: border-box;
@@ -82,14 +82,14 @@
       const val3 = Math.abs(parseInt(y) + parseInt(z) - parseInt(x));
 
       document.getElementById("result1").textContent = `2x + 11 = ${val1}`;
-      document.getElementById("result2").textContent = `2z + y - 5 = ${val2}`;
-      document.getElementById("result3").textContent = `|y + z - x| = ${val3}`;
+      document.getElementById("result2").textContent = `(2z + y) - 5 = ${val2}`;
+      document.getElementById("result3").textContent = `|(y + z) - x| = ${val3}`;
     }
 
     function clearResults() {
       document.getElementById("result1").textContent = "2x + 11 = ";
-      document.getElementById("result2").textContent = "2z + y - 5 = ";
-      document.getElementById("result3").textContent = "|y + z - x| = ";
+      document.getElementById("result2").textContent = "(2z + y) - 5 = ";
+      document.getElementById("result3").textContent = "|(y + z) - x| = ";
     }
   </script>
 </head>
@@ -103,8 +103,8 @@
     <div id="error" class="error"></div>
 
     <div class="result" id="result1">2x + 11 = </div>
-    <div class="result" id="result2">2z + y - 5 = </div>
-    <div class="result" id="result3">|y + z - x| = </div>
+    <div class="result" id="result2">(2z + y) - 5 = </div>
+    <div class="result" id="result3">|(y + z) - x| = </div>
   </div>
 </body>
 </html>
