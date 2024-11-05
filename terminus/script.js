@@ -23,7 +23,6 @@ function validateAndCalculate() {
         }
         element.style.borderColor = "green";
     });
-    if (!state) return;
 
     if (x == y) {
         _x.style.borderColor = "red";
